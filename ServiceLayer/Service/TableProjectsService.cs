@@ -17,18 +17,18 @@ namespace ServiceLayer.Service
         {
             _tableprojectsRepository = TableProjectsRepo;
         }
-        public bool Delete(string Id)
-        {
-            try
-            {
-                _tableprojectsRepository.Delete(Convert.ToInt32(Id));
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //public bool Delete(string Id)
+        //{
+        //    try
+        //    {
+        //        _tableprojectsRepository.Delete(Convert.ToInt32(Id));
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
         public TableProjects Get(int Id)
         {
             try
@@ -67,14 +67,21 @@ namespace ServiceLayer.Service
                 throw;
             }
         }
-        public void Insert(TableProjects entity)
+
+
+        public IEnumerable<TableProjects> GetProjectsByMonth(int month)
         {
             try
             {
-                if (entity != null)
+                var projects = _tableprojectsRepository.GetProjectsByMonth(month);
+
+                if (projects != null)
                 {
-                    _tableprojectsRepository.Insert(entity);
-                    _tableprojectsRepository.SaveChanges();
+                    return projects;
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception)
@@ -83,14 +90,62 @@ namespace ServiceLayer.Service
             }
         }
 
-        public void Update(TableProjects entity)
+        //public IEnumerable<string> GetAllProjectNames()
+        //{
+        //    try
+        //    {
+        //        var projects = _tableprojectsRepository.GetAll();
+
+        //        if (projects != null)
+        //        {
+        //            // Assuming that TableProjects has a property named ProjectName
+        //            return projects.Select(p => p.projectName).ToList();
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        //public TableProjects GetProjectDetails(int projectId)
+        //{
+        //    try
+        //    {
+        //        var obj = _tableprojectsRepository.GetProjectDetails(projectId);
+        //        if (obj != null)
+        //        {
+        //            return obj;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public IEnumerable<(int ProjectId, string ProjectName)> GetAllProjectNames()
         {
             try
             {
-                if (entity != null)
+                var projects = _tableprojectsRepository.GetAll();
+
+                if (projects != null)
                 {
-                    _tableprojectsRepository.Update(entity);
-                    _tableprojectsRepository.SaveChanges();
+                    // Assuming that TableProjects has properties named ProjectId and ProjectName
+                    return projects.Select(p => (p.ProjectId, p.projectName)).ToList();
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception)
@@ -98,6 +153,43 @@ namespace ServiceLayer.Service
                 throw;
             }
         }
+
+
+        #region dead code
+        //public void Insert(TableProjects entity)
+        //{
+        //    try
+        //    {
+        //        if (entity != null)
+        //        {
+        //            _tableprojectsRepository.Insert(entity);
+        //            _tableprojectsRepository.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        //public void Update(TableProjects entity)
+        //{
+        //    try
+        //    {
+        //        if (entity != null)
+        //        {
+        //            _tableprojectsRepository.Update(entity);
+        //            _tableprojectsRepository.SaveChanges();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+        #endregion
+
     }
-}
+
+    }
 

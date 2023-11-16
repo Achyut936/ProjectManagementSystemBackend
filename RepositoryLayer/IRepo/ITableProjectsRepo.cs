@@ -11,11 +11,14 @@ namespace RepositoryLayer.IRepo
     {
 
         IEnumerable<T> GetAll();
+        IEnumerable<string> GetAllProjectNames();   
         T Get(int Id);
-        void Insert(T entity);
-        void Update(T entity);
-        void Delete(int Id);
+        IEnumerable<T> GetProjectsByMonth(int month);
+        //T GetProjectDetails(int projectId);
+        //void Insert(T entity);
+        //void Update(T entity);
+        //void Delete(int Id);
 
-        void SaveChanges();
+        //void SaveChanges();
     }
 }

@@ -23,15 +23,15 @@ namespace RepositoryLayer.Repo
             entities = _applicationDbContext.Set<T>();
         }
         #endregion
-        public void Delete(int Id)
-        {
-            var result = _applicationDbContext.TableProjects.FirstOrDefault(l => l.ProjectId == Id);
-            if (result != null)
-            {
-                _applicationDbContext.TableProjects.Remove(result);
-                _applicationDbContext.SaveChanges();
-            }
-        }
+        //public void Delete(int Id)
+        //{
+        //    var result = _applicationDbContext.TableProjects.FirstOrDefault(l => l.ProjectId == Id);
+        //    if (result != null)
+        //    {
+        //        _applicationDbContext.TableProjects.Remove(result);
+        //        _applicationDbContext.SaveChanges();
+        //    }
+        //}
         public T Get(int Id)
         {
             return entities.SingleOrDefault(c => c.ProjectId == Id);
@@ -40,28 +40,21 @@ namespace RepositoryLayer.Repo
         {
             return entities.AsEnumerable();
         }
-        public void Insert(T entity)
+
+        public IEnumerable<string> GetAllProjectNames()
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            entities.Add(entity);
-            _applicationDbContext.SaveChanges();
+            return entities.Select(c => c.projectName).ToList();
         }
 
-        public void SaveChanges()
+        //public T GetProjectDetails(int projectId)
+        //{
+        //    return entities.SingleOrDefault(c => c.ProjectId == projectId);
+        //}
+
+        public IEnumerable<T> GetProjectsByMonth(int month)
         {
-            _applicationDbContext.SaveChanges();
+            return entities.Where(p => p.StartDate.Month == month || p.EndDate.Month == month).ToList();
         }
-        public void Update(T entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-            entities.Update(entity);
-            _applicationDbContext.SaveChanges();
-        }
+       
     }
 }

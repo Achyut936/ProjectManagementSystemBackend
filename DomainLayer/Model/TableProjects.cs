@@ -15,7 +15,12 @@ namespace DomainLayer.Model
             get;
             set;
         }
-        public string ProjectName
+        public string projectName
+        {
+            get;
+            set;
+        }
+        public string Client
         {
             get;
             set;
@@ -30,7 +35,17 @@ namespace DomainLayer.Model
             get;
             set;
         }
-        public string ProjectManager
+        public string Country
+        {
+            get;
+            set;
+        }
+        public int Budget
+        {
+            get;
+            set;
+        }
+        public string Status
         {
             get;
             set;
