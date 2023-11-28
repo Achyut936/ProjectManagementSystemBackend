@@ -77,52 +77,5 @@ namespace ProjectManagementSystem.Controllers
             }
         }
 
-        //[HttpGet(nameof(GetProjectDetails))]
-        //public IActionResult GetProjectDetails(int projectId)
-        //{
-        //    var obj = _customService.GetProjectDetails(projectId);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    else
-        //    {
-        //        return Ok(obj);
-        //    }
-        //}
-        //[HttpPost(nameof(CreateProject))]
-        //public IActionResult CreateProject(TableProjects tableprojects)
-        //{
-        //    if (tableprojects != null)
-        //    {
-        //        _customService.Insert(tableprojects);
-        //        return Ok("Created Successfully");
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("Somethingwent wrong");
-        //    }
-        //}
-
-        //[HttpPost(nameof(UpdateProject))]
-        //public IActionResult UpdateProject(TableProjects tableprojects)
-        //{
-        //    if (tableprojects != null)
-        //    {
-        //        _customService.Update(tableprojects);
-        //        return Ok("Updated SuccessFully");
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
-
-        //[HttpDelete("Delete/{id}")]
-        //public IActionResult Delete(string id)
-        //{
-        //    var tableprojects = _customService.Delete(id);
-        //    return Ok(tableprojects);
-        //}
     }
 }

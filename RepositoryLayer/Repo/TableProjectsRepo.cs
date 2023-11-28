@@ -23,15 +23,7 @@ namespace RepositoryLayer.Repo
             entities = _applicationDbContext.Set<T>();
         }
         #endregion
-        //public void Delete(int Id)
-        //{
-        //    var result = _applicationDbContext.TableProjects.FirstOrDefault(l => l.ProjectId == Id);
-        //    if (result != null)
-        //    {
-        //        _applicationDbContext.TableProjects.Remove(result);
-        //        _applicationDbContext.SaveChanges();
-        //    }
-        //}
+
         public T Get(int Id)
         {
             return entities.SingleOrDefault(c => c.ProjectId == Id);
@@ -46,10 +38,6 @@ namespace RepositoryLayer.Repo
             return entities.Select(c => c.projectName).ToList();
         }
 
-        //public T GetProjectDetails(int projectId)
-        //{
-        //    return entities.SingleOrDefault(c => c.ProjectId == projectId);
-        //}
 
         public IEnumerable<T> GetProjectsByMonth(int month)
         {
